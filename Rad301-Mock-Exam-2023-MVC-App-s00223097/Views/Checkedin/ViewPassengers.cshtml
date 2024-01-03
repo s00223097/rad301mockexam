@@ -1,0 +1,36 @@
+﻿<!--HTML and razor syntax to display passenger details for a chosen flight -->
+@model IEnumerable<Rad301_Mock_Exam_2023_MVC_App_s00223097.Data.BusinessData.Passenger>	
+@{
+	ViewBag.Title = "ViewPassengers";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewPassengers of flight @ViewBag.FlightId</h2>
+
+<table>
+	<thead>
+		<tr>
+			<th>Passenger ID</th>
+			<th>Name</th>
+			<th>Ticket Type</th>
+			<th>Ticket Cost</th>
+			<th>Baggage Charge</th>
+		</tr>
+	</thead>
+
+	<tbody>
+	@foreach (var passenger in Model)
+	{
+		<tr>
+			<td>@item.PassengerId</td>
+			<td>@item.FirstName</td>
+			<td>@item.LastName</td>
+			<td>@item.PassportNumber</td>
+			<td>@item.CheckedIn</td>
+			<td>@item.CheckedInTime</td>
+			<td>@item.SeatNumber</td>
+			<td>@item.FlightId</td>
+		</tr>
+	}
+		</tbody>
+</table>

@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Diagnostics;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace rad301mockexam
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -75,8 +76,10 @@ namespace rad301mockexam
             using (var db = new FlightContext())
             {
                 // Get all flights first... linq
-                var flights = db.Flights.ToList();
-
+                var flights = db.Flights.Include(f=> f.Passengers).ToList(); 
+                /* "Include" is here as per https://learn.microsoft.com/en-us/ef/core/querying/related-data/eager#filtered-include
+                 * because I wasn't getting the details needed to calculate total revenue as it wasn't loaded yet
+                */
                 foreach (var f in flights) // f stands for a flight
                 {
                     // Calc the total revenue for each flight
